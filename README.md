@@ -477,6 +477,20 @@ If you want to add a new translation, read this [document](./docs/translation.md
   <img src="https://contrib.rocks/image?repo=ChatGPTNextWeb/ChatGPT-Next-Web" />
 </a>
 
+## Acknowledgements
+
+This project is a fork of [NextChat (ChatGPT Next Web)](https://github.com/ChatGPTNextWeb/NextChat), originally created by [Yidadaa](https://github.com/Yidadaa) and contributors. Licensed under the MIT License.
+
+### NeuroWriter Additions
+
+This fork adds the following features on top of the original NextChat:
+
+- **Global Hotkey** (`Ctrl+Shift+A`) — Toggle the app window from anywhere on your desktop
+- **System Tray with Quick Actions** — Right-click menu for Summarize, Rewrite, Translate, Fix Grammar, and Explain
+- **Clipboard Pipeline** — Read clipboard contents, process through LLM, write results back
+- **Minimize to Tray** — App stays running in background on window close
+- **Enhanced Prompt Library** — Categories, tags, favorites, and JSON import/export for prompt templates
+
 ## LICENSE
 
 [MIT](https://opensource.org/license/mit/)
