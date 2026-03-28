@@ -8,12 +8,19 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "NextChat",
-    "version": "2.16.1"
+    "productName": "NeuroWriter",
+    "version": "1.0.0"
   },
   "tauri": {
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    },
     "allowlist": {
       "all": false,
+      "globalShortcut": {
+        "all": true
+      },
       "shell": {
         "all": false,
         "open": true
@@ -72,8 +79,8 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.yida.chatgpt.next.web",
-      "longDescription": "NextChat is a cross-platform ChatGPT client, including Web/Win/Linux/OSX/PWA.",
+      "identifier": "com.hasnain7abbas.neurowriter",
+      "longDescription": "NeuroWriter is an offline-first AI writing assistant with global hotkey launcher, clipboard pipeline, and system tray quick actions.",
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
@@ -82,7 +89,7 @@
         "signingIdentity": null
       },
       "resources": [],
-      "shortDescription": "NextChat App",
+      "shortDescription": "NeuroWriter — Offline AI Writing Assistant",
       "targets": "all",
       "windows": {
         "certificateThumbprint": null,
@@ -110,7 +117,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "NextChat",
+        "title": "NeuroWriter",
         "width": 960,
         "hiddenTitle": true,
         "titleBarStyle": "Overlay"

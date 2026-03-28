@@ -1,8 +1,8 @@
 [package]
-name = "nextchat"
-version = "0.1.0"
-description = "A cross platform app for LLM ChatBot."
-authors = ["Yidadaa"]
+name = "neurowriter"
+version = "1.0.0"
+description = "NeuroWriter — Offline AI Writing Assistant with global hotkey, clipboard pipeline, and system tray"
+authors = ["hasnain7abbas"]
 license = "mit"
 repository = ""
 default-run = "nextchat"
@@ -35,6 +35,8 @@ tauri = { version = "1.5.4", features = [ "http-all",
     "window-start-dragging",
     "window-unmaximize",
     "window-unminimize",
+    "system-tray",
+    "global-shortcut-all",
 ] }
 tauri-plugin-window-state = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
 percent-encoding = "2.3.1"

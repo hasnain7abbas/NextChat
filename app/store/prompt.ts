@@ -10,6 +10,9 @@ export interface Prompt {
   title: string;
   content: string;
   createdAt: number;
+  category?: string;
+  tags?: string[];
+  isFavorite?: boolean;
 }
 
 export const SearchService = {
@@ -124,10 +127,91 @@ export const usePromptStore = createPersistStore(
 
     search(text: string) {
       if (text.length === 0) {
-        // return all rompts
+        // return all prompts
         return this.getUserPrompts().concat(SearchService.builtinPrompts);
       }
       return SearchService.search(text) as Prompt[];
+    },
+
+    toggleFavorite(id: string) {
+      const prompts = get().prompts;
+      if (prompts[id]) {
+        prompts[id].isFavorite = !prompts[id].isFavorite;
+        set(() => ({ prompts }));
+      }
+    },
+
+    getFavorites() {
+      return Object.values(get().prompts ?? {}).filter((p) => p.isFavorite);
+    },
+
+    setCategory(id: string, category: string) {
+      const prompts = get().prompts;
+      if (prompts[id]) {
+        prompts[id].category = category;
+        set(() => ({ prompts }));
+      }
+    },
+
+    setTags(id: string, tags: string[]) {
+      const prompts = get().prompts;
+      if (prompts[id]) {
+        prompts[id].tags = tags;
+        set(() => ({ prompts }));
+      }
+    },
+
+    getCategories(): string[] {
+      const categories = new Set<string>();
+      Object.values(get().prompts ?? {}).forEach((p) => {
+        if (p.category) categories.add(p.category);
+      });
+      return Array.from(categories).sort();
+    },
+
+    getAllTags(): string[] {
+      const tags = new Set<string>();
+      Object.values(get().prompts ?? {}).forEach((p) => {
+        p.tags?.forEach((t) => tags.add(t));
+      });
+      return Array.from(tags).sort();
+    },
+
+    getByCategory(category: string) {
+      return Object.values(get().prompts ?? {}).filter(
+        (p) => p.category === category,
+      );
+    },
+
+    getByTag(tag: string) {
+      return Object.values(get().prompts ?? {}).filter(
+        (p) => p.tags?.includes(tag),
+      );
+    },
+
+    exportPrompts(): string {
+      const prompts = Object.values(get().prompts ?? {});
+      return JSON.stringify(prompts, null, 2);
+    },
+
+    importPrompts(jsonStr: string) {
+      try {
+        const imported = JSON.parse(jsonStr) as Prompt[];
+        const prompts = get().prompts;
+        imported.forEach((p) => {
+          const newId = nanoid();
+          prompts[newId] = {
+            ...p,
+            id: newId,
+            isUser: true,
+            createdAt: p.createdAt || Date.now(),
+          };
+        });
+        set(() => ({ prompts, counter: get().counter + 1 }));
+        return imported.length;
+      } catch {
+        return 0;
+      }
     },
   }),
   {
