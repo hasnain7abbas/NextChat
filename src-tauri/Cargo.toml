@@ -5,7 +5,7 @@ description = "NeuroWriter — Offline AI Writing Assistant with global hotkey, 
 authors = ["hasnain7abbas"]
 license = "mit"
 repository = ""
-default-run = "nextchat"
+default-run = "neurowriter"
 edition = "2021"
 rust-version = "1.60"
 
